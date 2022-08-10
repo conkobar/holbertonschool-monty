@@ -1,14 +1,17 @@
 #include "monty.h"
 /**
- * opnfd -
+ * main - reads and translates monty files
+ * @ac: arg count
+ * @av: arg values
  *
+ * Return: 0 on success
  */
 int main(int ac, int **av)
 {
 	char *line = NULL, *opcode = NULL;
 	size_t size = 0;
 	unsigned int line_num;
-	stack_t *STACK = NULL;
+	stack_t *STACK = NULL, *tmp = NULL;
 	FILE *fd;
 
 	for (line_num = 1; (getline(&line, &size, fd)) != -1; line_num++)
@@ -31,9 +34,9 @@ int main(int ac, int **av)
 	{
 		while (STACK)
 		{
-			temp = STACK;
-			STACK = temp->next;
-			free(temp);
+			tmp = STACK;
+			STACK = tmp->next;
+			free(tmp);
 		}
 	}
 

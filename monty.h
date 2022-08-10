@@ -61,6 +61,11 @@ typedef struct arg_s
 
 arg_t arg;
 
+/* function(ality) */
+void run_opcode(char *opcode, stack_t **stack, unsigned int line_number);
+void free_stack(stack_t **stack);
+
+/* opcodes for monty reader */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
@@ -69,9 +74,7 @@ void pop(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 
-void free_stack(stack_t **stack);
-void run_opcode(char *opcode, stack_t **stack, unsigned int line_number);
-
+/* error-printing functions */
 void file_error(char *file);
 void usage_error(void);
 void push_error(unsigned int line_number);

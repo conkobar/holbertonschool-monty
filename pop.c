@@ -1,5 +1,9 @@
 #include "monty.h"
-
+/**
+ * pop - remove the top member of the stack
+ * @stack: struct representing the stack
+ * @line_num: line count
+ */
 void pop(stack_t **stack, unsigned int line_num)
 {
 	stack_t *tmp;
