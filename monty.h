@@ -66,20 +66,20 @@ void run_opcode(char *opcode, stack_t **stack, unsigned int line_number);
 void free_stack(stack_t **stack);
 
 /* opcodes for monty reader */
-void push(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
-void pint(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
-void pop(stack_t **stack, unsigned int line_number);
-void add(stack_t **stack, unsigned int line_number);
-void nop(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_num);
+void pall(stack_t **stack, unsigned int line_num);
+void pint(stack_t **stack, unsigned int line_num);
+void pop(stack_t **stack, unsigned int line_num);
+void swap(stack_t **stack, unsigned int line_num);
+void add(stack_t **stack, unsigned int line_num);
+void nop(stack_t **stack, unsigned int line_num);
 
 /* error-printing functions */
 void file_error(char *file);
-void usage_error(void);
-void push_error(unsigned int line_number);
-void pint_error(unsigned int line_number);
-void pop_error(unsigned int line_number);
+void use_error(void);
+void push_error(unsigned int line_num);
+void pint_error(unsigned int line_num);
+void pop_error(unsigned int line_num);
 
 
 #endif /* MONTY_H */
