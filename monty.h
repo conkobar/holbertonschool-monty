@@ -1,6 +1,22 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+
+#define OPCODES\
+	{					\
+		{"push", push},			\
+		{"pall", pall},			\
+		{"pint", pint},			\
+		{"pop", pop},			\
+		{"swap", swap},			\
+		{"add", add},			\
+		{"nop", nop},			\
+		{NULL, NULL}			\
+	}
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -31,6 +47,36 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct arg_s - holds value of argument
+ * @argument: the argument
+ *
+ * Description: struct to hold monty argument
+ */
+
+typedef struct arg_s
+{
+        char *argument;
+} arg_t;
+
+arg_t arg;
+
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+
+void free_stack(stack_t **stack);
+void run_opcode(char *opcode, stack_t **stack, unsigned int line_number);
+
+void file_error(char *file);
+void usage_error(void);
+void push_error(unsigned int line_number);
+void pint_error(unsigned int line_number);
+void pop_error(unsigned int line_number);
 
 
-#endif
+#endif /* MONTY_H */
