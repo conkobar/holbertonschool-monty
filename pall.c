@@ -3,6 +3,7 @@
 void pall(stack_t **stack, unsigned int line_num)
 {
 	stack_t *tmp;
+	(void)line_num;
 
 	if (*stack)
 	{
