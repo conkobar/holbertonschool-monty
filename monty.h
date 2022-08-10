@@ -4,18 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-
-#define OPCODES\
-	{					\
-		{"push", push},			\
-		{"pall", pall},			\
-		{"pint", pint},			\
-		{"pop", pop},			\
-		{"swap", swap},			\
-		{"add", add},			\
-		{"nop", nop},			\
-		{NULL, NULL}			\
-	}
+#include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -28,9 +18,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -43,8 +33,8 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
@@ -56,7 +46,7 @@ typedef struct instruction_s
 
 typedef struct arg_s
 {
-        char *argument;
+	char *argument;
 } arg_t;
 
 arg_t arg;
@@ -76,7 +66,7 @@ void nop(stack_t **stack, unsigned int line_num);
 
 /* error-printing functions */
 void file_error(char *file);
-void use_error(void);
+void usage_error(void);
 void push_error(unsigned int line_num);
 void pint_error(unsigned int line_num);
 void pop_error(unsigned int line_num);

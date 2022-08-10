@@ -6,7 +6,7 @@
  *
  * Return: 0 on success
  */
-int main(int ac, int **av)
+int main(int ac, char **av)
 {
 	char *line = NULL, *opcode = NULL;
 	size_t size = 0;
@@ -14,9 +14,16 @@ int main(int ac, int **av)
 	stack_t *STACK = NULL, *tmp = NULL;
 	FILE *fd;
 
+	if (ac != 2)
+		usage_error();
+
+	fd = fopen(av[1], "r");
+	if (!fd)
+		file_error(av[1]);
+
 	for (line_num = 1; (getline(&line, &size, fd)) != -1; line_num++)
 	{
-		if (line == '\n')
+		if (*line == '\n')
 			continue;
 
 		opcode = strtok(line, " \t\n");
