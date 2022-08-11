@@ -40,7 +40,7 @@ typedef struct instruction_s
 } instruction_t;
 
 /* opcode container */
-extern char *ops[];
+char **ops;
 
 /* file & list control */
 int finders(FILE *file);

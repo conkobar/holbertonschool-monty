@@ -7,30 +7,44 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	int n;
+	char *arg = ops[0];
+	int data, i;
+	stack_t *new;
 
-	if (!ops[1])
-		return;
-	for (n = 0; ops[1][n] != '\0'; n++)
+	if (!arg)
 	{
-		if ((!n && ops[1][n] == '-') || (ops[1][n] == '.'))
-			continue;
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(1);
+	}
 
-		if (!isdigit(ops[1][n]))
+	for (i = 0; arg[i]; i++)
+	{
+		if ((isdigit(arg[i])) == 0 && arg[i] != '-')
 		{
-			ops[3] = "no digit";
-			return;
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(1);
 		}
 	}
 
-	n = atoi(ops[1]);
+	data = atoi(arg);
 
-	if (!so_head(stack, n))
+	new = malloc(sizeof(stack_t));
+	if (!new)
 	{
-		ops[3] = "head";
-		return;
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(1);
 	}
+
+	new->n = data;
+	new->prev = NULL;
+	new->next = *stack;
+
+	if (!*stack)
+		(*stack)->prev = new;
+
+	*stack = new;
 }
+
 
 /**
  * pall - prints all values of stack, starting from the top

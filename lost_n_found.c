@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * findops - find opcodes in file
+ * finders - find opcodes in file
  * @file: file to be scoured
  *
  * Return: 0 on success
@@ -17,13 +17,10 @@ int finders(FILE *file)
 	while (keepers = getline(&opcode, &oplength, file))
 	{
 		line_number++;
-
 		if (keepers == -1)
 			break;
-
 		if (keepers == 1)
 			continue;
-
 		for (i = 0; opcode[i]; i++)
 		{
 			if (opcode[i] == (' ' || '\t'))
@@ -31,37 +28,29 @@ int finders(FILE *file)
 			else
 				break;
 		}
-
 		if (!keepers)
 			continue;
-
 		ops[0] = strtok(opcode, " \n\t");
-
 		if (!ops[0])
 			ops[0] = strtok(NULL, " \n\t");
-
-		if (ops[0][0] == '#');
+		if (ops[0][0] == '#')
 			continue;
-
 		ops[1] = strtok(NULL, " \n\t");
 		losers(line_number, &stack);
 		if (ops[3])
 			break;
 	}
-
 	if (stack)
 		freedumb(stack);
-
 	if (opcode)
 		free(opcode);
-
 	return (0);
 }
 
 /**
  * losers - directs opcodes
- * line_number: current line number of file
- * stack: list of stack
+ * @line_number: current line number of file
+ * @stack: list of stack
  */
 void losers(int line_number, stack_t **stack)
 {
