@@ -12,22 +12,24 @@ int main(int ac, char **av)
 	FILE *file;
 
 	if (ac != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(1);
-	}
+		errorlocus(1, 1);
+
+
 
 	file = fopen(av[1], "r");
+
 	if (!file)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
-		exit(1);
+
+		errorlocus(2, 1);
 	}
 
 	if (finders(file))
 		exit(1);
+
 	if (fclose(file))
 		exit(1);
+
 	if (ops[3])
 		exit(1);
 

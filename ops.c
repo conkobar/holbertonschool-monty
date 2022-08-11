@@ -12,28 +12,19 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *new;
 
 	if (!arg)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(1);
-	}
+		errorlocus(4, line_number);
 
 	for (i = 0; arg[i]; i++)
 	{
 		if ((isdigit(arg[i])) == 0 && arg[i] != '-')
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			exit(1);
-		}
+			errorlocus(4, line_number);
 	}
 
 	data = atoi(arg);
 
 	new = malloc(sizeof(stack_t));
 	if (!new)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(1);
-	}
+		errorlocus(4, line_number);
 
 	new->n = data;
 	new->prev = NULL;

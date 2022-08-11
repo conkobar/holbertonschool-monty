@@ -9,6 +9,7 @@
 #include <stddef.h>
 #include <unistd.h>
 
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,15 +40,12 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* opcode container */
-char **ops;
 
-/* file & list control */
+/* file, list, output control */
 int finders(FILE *file);
 void losers(int line_number, stack_t **stack);
-stack_t *so_head(stack_t **head, const int n);
-stack_t *so_tail(stack_t **head, const int n);
 void freedumb(stack_t *head);
+void errorlocus(int error, unsigned int line_number);
 
 /* opcode functions */
 void push(stack_t **stack, unsigned int line_number);
@@ -56,6 +54,9 @@ void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
-void nop(stack_t **stack, unsigned int line_number);
+
+
+/* opcode container */
+extern char *ops[];
 
 #endif /* MONTY_H */

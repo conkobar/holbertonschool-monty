@@ -8,14 +8,15 @@
  */
 int finders(FILE *file)
 {
-	int i, keepers;
-	unsigned int line_number = 1;
-	char *opcode;
+	int i, keepers = 0;
+	unsigned int line_number;
+	char *opcode = NULL;
 	stack_t *stack;
 	size_t oplength = 0;
 
-	while (keepers = getline(&opcode, &oplength, file))
+	while (file)
 	{
+		keepers = getline(&opcode, &oplength, file);
 		line_number++;
 		if (keepers == -1)
 			break;
@@ -40,11 +41,12 @@ int finders(FILE *file)
 		if (ops[3])
 			break;
 	}
+
 	if (stack)
 		freedumb(stack);
 	if (opcode)
 		free(opcode);
-	return (0);
+	return (keepers);
 }
 
 /**
@@ -77,8 +79,8 @@ void losers(int line_number, stack_t **stack)
 
 	if (!weepers)
 	{
-		fprintf(stderr, "L%u: unknown instruction %s\n", line_number, ops[0]);
 		ops[3] = "weepers";
+		errorlocus(3, line_number);
 		return;
 	}
 }
