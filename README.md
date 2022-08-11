@@ -5,7 +5,7 @@
  ---
 ## Opcodes and description
 
-|      Filename          |Description                                                  |
+|      Filename          |Description
 |----------------|-------------------------------|-----------------------------|
 |0.push,pall|Implement the push and pall opcodes.            
 |1.pint| Implement the pint opcode.
@@ -16,4 +16,7 @@
 ## Compilation
 - All files were compiled on Ubuntu 14.04 LTS
 - Compile: gcc -Wall -Werror -Wextra -pedantic *.c -o monty
-[<center>Buzz Kleine & Brandon Brown</center>](https://github.com/bbrown585)
+ 
+# Authors
+
+[Buzz Kleine & Brandon Brown</center>](https://github.com/bbrown585)_
