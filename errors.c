@@ -1,5 +1,10 @@
 #include "monty.h"
 
+/**
+ * errorlocus - directs errors to appropriate output
+ * @error: given error
+ * @line_number: current line number of .m file
+ */
 void errorlocus(int error, unsigned int line_number)
 {
 	switch(error)
@@ -29,8 +34,6 @@ void errorlocus(int error, unsigned int line_number)
 			break;
 	}
 
-	if (ops)
-		free(ops);
 
 	exit(1);
 }

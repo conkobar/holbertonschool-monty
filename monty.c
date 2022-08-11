@@ -1,5 +1,8 @@
 #include "monty.h"
 
+char *ops[] = {
+	NULL, NULL,
+	"stack", NULL};
 /**
  * main - simple monty file processor
  * @ac: arg count
@@ -13,8 +16,6 @@ int main(int ac, char **av)
 
 	if (ac != 2)
 		errorlocus(1, 1);
-
-
 
 	file = fopen(av[1], "r");
 
