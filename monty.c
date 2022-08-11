@@ -1,52 +1,35 @@
 #include "monty.h"
+
 /**
- * main - reads and translates monty files
+ * main - simple monty file processor
  * @ac: arg count
  * @av: arg values
  *
- * Return: 0 on success
+ * Return: 0
  */
 int main(int ac, char **av)
 {
-	char *line = NULL, *opcode = NULL;
-	size_t size = 0;
-	unsigned int line_num;
-	stack_t *STACK = NULL, *tmp = NULL;
-	FILE *fd;
+	FILE *file;
 
 	if (ac != 2)
-		usage_error();
-
-	fd = fopen(av[1], "r");
-	if (!fd)
-		file_error(av[1]);
-
-	for (line_num = 1; (getline(&line, &size, fd)) != -1; line_num++)
 	{
-		if (*line == '\n')
-			continue;
-
-		opcode = strtok(line, " \t\n");
-
-		if (!opcode)
-			continue;
-
-		arg.argument = strtok(NULL, " \t\n");
-		run_opcode(opcode, &STACK, line_num);
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(1);
 	}
 
-	free(line);
-
-	if (STACK)
+	file = fopen(av[1], "r");
+	if (!file)
 	{
-		while (STACK)
-		{
-			tmp = STACK;
-			STACK = tmp->next;
-			free(tmp);
-		}
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
+		exit(1);
 	}
 
-	fclose(fd);
-	exit(EXIT_SUCCESS);
+	if (finders(file))
+		exit(1);
+	if (fclose(file))
+		exit(1);
+	if (ops[3])
+		exit(1);
+
+	return (0);
 }
