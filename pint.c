@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * pint - idk
+ *
+ * @stack: idk
+ * @line_num: idk
+ */
 void pint(stack_t **stack, unsigned int line_num)
 {
 	stack_t *tmp;
