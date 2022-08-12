@@ -32,8 +32,6 @@ int finders(FILE *file)
 		if (!keepers)
 			continue;
 		ops[0] = strtok(opcode, " \n\t");
-		if (!ops[0])
-			ops[0] = strtok(NULL, " \n\t");
 		if (ops[0][0] == '#')
 			continue;
 		ops[1] = strtok(NULL, " \n\t");
@@ -41,17 +39,13 @@ int finders(FILE *file)
 		if (ops[3])
 			break;
 	}
-
 	if (file)
-	{
 		if (fclose(file))
 			exit(1);
-	}
 	if (stack)
 		freedumb(stack);
 	if (opcode)
 		free(opcode);
-
 	return (keepers);
 }
 
@@ -86,7 +80,6 @@ void losers(int line_number, stack_t **stack)
 	if (!weepers)
 	{
 		ops[3] = "weepers";
-		errorlocus(3, line_number);
 		return;
 	}
 }

@@ -15,7 +15,10 @@ int main(int ac, char **av)
 	FILE *file;
 
 	if (ac != 2)
-		errorlocus(1, 1);
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(1);
+	}
 
 	file = fopen(av[1], "r");
 

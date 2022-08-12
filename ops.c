@@ -7,7 +7,8 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	unsigned int i;
+	int i, n;
+	stack_t *tmp;
 
 	if (!ops[1])
 	{
@@ -28,6 +29,20 @@ void push(stack_t **stack, unsigned int line_number)
 			return;
 		}
 	}
+
+	n = atoi(ops[1]);
+
+	tmp = malloc(sizeof(stack_t));
+	if (!tmp)
+	{
+		fprintf(stderr, "L%d: usage: tmp malloc error; push integer\n", line_number);
+		exit(1);
+	}
+
+	tmp->n = n;
+	tmp->prev = NULL;
+	tmp->next = *stack;
+	*stack = tmp;
 }
 
 
