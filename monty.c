@@ -1,8 +1,6 @@
 #include "monty.h"
 
-char *ops[] = {
-	NULL, NULL,
-	"stack", NULL};
+char *ops[] = {NULL, NULL, NULL, NULL};
 /**
  * main - simple monty file processor
  * @ac: arg count
@@ -29,9 +27,6 @@ int main(int ac, char **av)
 	}
 
 	if (finders(file))
-		exit(1);
-
-	if (fclose(file))
 		exit(1);
 
 	if (ops[3])

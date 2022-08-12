@@ -8,7 +8,7 @@
  */
 int finders(FILE *file)
 {
-	int i, keepers = 0;
+	int keepers = 0;
 	unsigned int line_number = 1;
 	char *opcode = NULL;
 	stack_t *stack = 0;
@@ -22,26 +22,14 @@ int finders(FILE *file)
 			break;
 		if (keepers == 1)
 			continue;
-		for (i = 0; opcode[i]; i++)
-		{
-			if (opcode[i] == (' ' || '\t'))
-				keepers = 0;
-			else
-				break;
-		}
-		if (!keepers)
-			continue;
 		ops[0] = strtok(opcode, " \n\t");
 		if (ops[0][0] == '#')
 			continue;
 		ops[1] = strtok(NULL, " \n\t");
 		losers(line_number, &stack);
-		if (ops[3])
-			break;
 	}
-	if (file)
-		if (fclose(file))
-			exit(1);
+	if (fclose(file))
+		exit(1);
 	if (stack)
 		freedumb(stack);
 	if (opcode)
@@ -56,7 +44,7 @@ int finders(FILE *file)
  */
 void losers(int line_number, stack_t **stack)
 {
-	unsigned int i, weepers;
+	unsigned int i;
 	instruction_t codes[] = {
 		{"push", push},
 		{"pall", pall},
@@ -70,16 +58,7 @@ void losers(int line_number, stack_t **stack)
 		{
 			if (codes[i].f)
 				codes[i].f(stack, line_number);
-			if (ops[3])
-				return;
-			weepers = 1;
 			break;
 		}
-	}
-
-	if (!weepers)
-	{
-		ops[3] = "weepers";
-		return;
 	}
 }

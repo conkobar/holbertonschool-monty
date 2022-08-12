@@ -13,11 +13,10 @@ void push(stack_t **stack, unsigned int line_number)
 	if (!ops[1])
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		ops[3] = "err";
-		return;
+		exit(1);
 	}
 
-	for (i = 0; ops[1][i] != '\0'; i++)
+	for (i = 0; ops[1][i]; i++)
 	{
 		if ((ops[1][i] == '-' && i == 0) || (ops[1][i] == '.'))
 			i++;
@@ -25,8 +24,7 @@ void push(stack_t **stack, unsigned int line_number)
 		if (!isdigit(ops[1][i]))
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-			ops[3] = "err";
-			return;
+			exit(1);
 		}
 	}
 
