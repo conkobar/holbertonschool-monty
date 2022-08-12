@@ -7,33 +7,27 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	char *arg = ops[0];
-	int data, i;
-	stack_t *new;
+	unsigned int i;
 
-	if (!arg)
-		errorlocus(4, line_number);
-
-	for (i = 0; arg[i]; i++)
+	if (!ops[1])
 	{
-		if ((isdigit(arg[i])) == 0 && arg[i] != '-')
-			errorlocus(4, line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		ops[3] = "err";
+		return;
 	}
 
-	data = atoi(arg);
+	for (i = 0; ops[1][i] != '\0'; i++)
+	{
+		if ((ops[1][i] == '-' && i == 0) || (ops[1][i] == '.'))
+			i++;
 
-	new = malloc(sizeof(stack_t));
-	if (!new)
-		errorlocus(4, line_number);
-
-	new->n = data;
-	new->prev = NULL;
-	new->next = *stack;
-
-	if (!*stack)
-		(*stack)->prev = new;
-
-	*stack = new;
+		if (!isdigit(ops[1][i]))
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			ops[3] = "err";
+			return;
+		}
+	}
 }
 
 

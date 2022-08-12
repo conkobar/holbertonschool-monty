@@ -21,8 +21,8 @@ int main(int ac, char **av)
 
 	if (!file)
 	{
-
-		errorlocus(2, 1);
+		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", av[1]);
+		exit(1);
 	}
 
 	if (finders(file))

@@ -22,7 +22,7 @@ void errorlocus(int error, unsigned int line_number)
 			break;
 
 		case 3:
-			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, ops[0]);
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, ops[0]);
 			return;
 
 		case 4:

@@ -9,9 +9,9 @@
 int finders(FILE *file)
 {
 	int i, keepers = 0;
-	unsigned int line_number;
+	unsigned int line_number = 1;
 	char *opcode = NULL;
-	stack_t *stack;
+	stack_t *stack = 0;
 	size_t oplength = 0;
 
 	while (file)
@@ -42,10 +42,16 @@ int finders(FILE *file)
 			break;
 	}
 
+	if (file)
+	{
+		if (fclose(file))
+			exit(1);
+	}
 	if (stack)
 		freedumb(stack);
 	if (opcode)
 		free(opcode);
+
 	return (keepers);
 }
 
