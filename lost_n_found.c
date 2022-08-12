@@ -14,13 +14,10 @@ int finders(FILE *file)
 	stack_t *stack = 0;
 	size_t oplength = 0;
 
-	while (file)
+	while (getline(&opcode, &oplength, file) != -1)
 	{
-		keepers = getline(&opcode, &oplength, file);
-		if (keepers == -1)
-			break;
 		line_number++;
-		if (keepers == 1)
+		if (!strcmp(opcode, "\n"))
 			continue;
 		ops[0] = strtok(opcode, " \n\t");
 		if (ops[0][0] == '#')
