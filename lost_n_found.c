@@ -20,7 +20,7 @@ int finders(FILE *file)
 		if (!strcmp(opcode, "\n"))
 			continue;
 		ops[0] = strtok(opcode, " \n\t");
-		if (ops[0][0] == '#')
+		if (!ops[0] || ops[0][0] == '#')
 			continue;
 		ops[1] = strtok(NULL, " \n\t");
 		losers(line_number, &stack);

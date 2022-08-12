@@ -29,8 +29,5 @@ int main(int ac, char **av)
 	if (finders(file))
 		exit(1);
 
-	if (ops[3])
-		exit(1);
-
 	return (0);
 }

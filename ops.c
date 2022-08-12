@@ -18,7 +18,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	for (i = 0; ops[1][i]; i++)
 	{
-		if ((ops[1][i] == '-' && i == 0) || (ops[1][i] == '.'))
+		if ((ops[1][i] == '-' && i == 0))
 			i++;
 
 		if (!isdigit(ops[1][i]))
