@@ -55,7 +55,10 @@ void losers(int line_number, stack_t **stack)
 		{
 			if (codes[i].f)
 				codes[i].f(stack, line_number);
-			break;
+			return;
 		}
 	}
+
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, ops[0]);
+	exit(1);
 }
