@@ -48,6 +48,7 @@ void losers(int line_number, stack_t **stack)
 		{"pint", pint},
 		{"swap", swap},
 		{"add", add},
+		{"pop", pop},
 		{"nop", NULL},
 		{NULL, NULL}
 	};
