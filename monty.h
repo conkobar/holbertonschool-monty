@@ -6,7 +6,13 @@
 #include <fcntl.h>
 #include <string.h>
 #include <ctype.h>
+<<<<<<< HEAD
 #include <unistd.h>
+=======
+#include <stddef.h>
+#include <unistd.h>
+
+>>>>>>> pizza
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -38,39 +44,23 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct arg_s - holds value of argument
- * @argument: the argument
- *
- * Description: struct to hold monty argument
- */
 
-typedef struct arg_s
-{
-	char *argument;
-} arg_t;
+/* file, list, output control */
+int finders(FILE *file);
+void losers(int line_number, stack_t **stack);
+void freedumb(stack_t *head);
+void errorlocus(int error, unsigned int line_number);
 
-arg_t arg;
+/* opcode functions */
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
 
-/* function(ality) */
-void run_opcode(char *opcode, stack_t **stack, unsigned int line_number);
-void free_stack(stack_t **stack);
 
-/* opcodes for monty reader */
-void push(stack_t **stack, unsigned int line_num);
-void pall(stack_t **stack, unsigned int line_num);
-void pint(stack_t **stack, unsigned int line_num);
-void pop(stack_t **stack, unsigned int line_num);
-void swap(stack_t **stack, unsigned int line_num);
-void add(stack_t **stack, unsigned int line_num);
-void nop(stack_t **stack, unsigned int line_num);
-
-/* error-printing functions */
-void file_error(char *file);
-void usage_error(void);
-void push_error(unsigned int line_num);
-void pint_error(unsigned int line_num);
-void pop_error(unsigned int line_num);
-
+/* opcode container */
+extern char *ops[];
 
 #endif /* MONTY_H */
