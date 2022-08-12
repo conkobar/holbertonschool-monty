@@ -9,7 +9,7 @@
 int finders(FILE *file)
 {
 	int keepers = 0;
-	unsigned int line_number = 1;
+	unsigned int line_number = 0;
 	char *opcode = NULL;
 	stack_t *stack = 0;
 	size_t oplength = 0;
@@ -17,9 +17,9 @@ int finders(FILE *file)
 	while (file)
 	{
 		keepers = getline(&opcode, &oplength, file);
-		line_number++;
 		if (keepers == -1)
 			break;
+		line_number++;
 		if (keepers == 1)
 			continue;
 		ops[0] = strtok(opcode, " \n\t");
