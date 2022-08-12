@@ -45,6 +45,9 @@ void losers(int line_number, stack_t **stack)
 	instruction_t codes[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
+		{"swap", swap},
+		{"add", add},
 		{"nop", NULL},
 		{NULL, NULL}
 	};
